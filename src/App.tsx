@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { preloadQuery, usePreloadedQuery } from 'react-relay/hooks';
+import RelayEnvironment from './RelayEnvironment';
+import graphql from 'babel-plugin-relay/macro';
+import Header from './components/Header';
+
+const appQuery = graphql`
+  query AppQuery {
+    user {
+      ...Header_user
+    }
+  }
+`;
+
+const query = preloadQuery(RelayEnvironment, appQuery, {});
 
 function App() {
+  const data = usePreloadedQuery<any>(appQuery, query);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header user={data.user} />
     </div>
   );
 }

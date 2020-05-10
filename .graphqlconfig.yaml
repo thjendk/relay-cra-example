@@ -1,0 +1,18 @@
+schemaPath: schema/schema.graphql
+extensions:
+  endpoints:
+    dev: 'http://localhost:3001/graphql'
+  codegen:
+    src/types/generated.tsx:
+      plugins:
+        - 'typescript'
+        - 'typescript-operations'
+        - 'typescript-react-apollo'
+    server/types/resolvers-types.tsx:
+      plugins:
+        - 'typescript'
+        - 'typescript-resolvers'
+      config:
+        useIndexSignature: true
+        contextType: config/apolloServer#Context
+        defaultMapper: Partial<{T}>

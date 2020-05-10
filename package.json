@@ -6,24 +6,29 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "apollo-server-express": "^2.13.0",
+    "babel-plugin-relay": "^9.1.0",
+    "express": "^4.17.1",
+    "graphql-relay": "^0.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-relay": "0.0.0-experimental-895a6fe0",
     "react-scripts": "3.4.1",
+    "relay-runtime": "^9.1.0",
+    "ts-node": "^8.10.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "npm run relay && react-scripts start",
+    "build": "npm run relay && react-scripts build",
+    "server": "nodemon",
+    "relay": "yarn run relay-compiler --language typescript --schema schema/schema.graphql --src ./src/ --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:3001",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -35,5 +40,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/graphql-relay": "^0.6.0",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@types/react-relay": "^7.0.7",
+    "graphql": "^15.0.0",
+    "relay-compiler": "^9.1.0",
+    "relay-compiler-language-typescript": "^12.0.2"
   }
 }
